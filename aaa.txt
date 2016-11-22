@@ -1,0 +1,6 @@
+﻿git clone xxxxxxxxx 克隆远程仓库
+git checkout -b xxxx origin/xxxx  拉取项目新分支
+git fetch  拉取分支更新
+git rebase origin/xxxx  更新本地库
+git commit -am "xxxx"   本地提交
+git push origin xxxx    提交本地分支到远程分支
