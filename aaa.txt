@@ -4,3 +4,8 @@ git fetch  拉取分支更新
 git rebase origin/xxxx  更新本地库
 git commit -am "xxxx"   本地提交
 git push origin xxxx    提交本地分支到远程分支
+git status    查看当前修改
+git checkout xxxx切换到分支xxxx
+git diff   查看当前修改与修改前的差异
+
+121231
