@@ -3,6 +3,9 @@ git checkout -b xxxx origin/xxxx  拉取项目新分支
 git checkout xxxx切换到分支xxxx
 
 
+git add xxxxx  添加新的文件(新建的文件需要执行此命令添加,之后再提交,需要提交本地路径)
+
+
 每次提交代码或者拉取其他人代码时需要做的步骤：
 git diff   查看当前修改与修改前的差异（没有差异的话可忽略）
 git status    查看当前修改（查看是否有红色文件，没有的话说明没有修改）
