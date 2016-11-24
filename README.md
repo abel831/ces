@@ -1,7 +1,7 @@
 # ces
 # 开发域名：dev.ces.com
 邮件点击phpstudy配置站点，新增后生成配置，然后到c盘windows->system32->drivers->etc下，把hosts文件复制到桌面，使用编辑器打开，在最下行新起一行写上127.0.0.1    dev.ces.com
-然后重启nginx即可用该域名访问。
+然后覆盖原来的文件重启nginx即可用该域名访问。
 
 域名如果可以正常访问的话页面会显示php版本信息页,之后右键点击phpstudy选择phpmyadmin,然后用户名和密码都输入root尝试能否登陆,如果可以登陆就在浏览器访问dev.ces.com/CreateDB.php,看到DB Created!说明执行成功,即可开始下面的工作,否则说明数据库创建失败,请查明原因或拿错误提示询问我.如果自己数据库用户名密码不是root,就打开etc/config.ini文件,修改user(用户名)或password(密码)为你当前数据库的用户名密码,之后保存再次尝试访问.
 
