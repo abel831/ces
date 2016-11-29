@@ -1,5 +1,5 @@
 <?php
-$configPath = '../etc/config.ini';
+$configPath = 'etc/config.ini';
 $configArray = parse_ini_file($configPath, true);
 $redishost = array();
 if ($configArray === false) {
