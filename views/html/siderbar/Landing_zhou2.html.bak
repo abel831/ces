@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">	
+  <title>登陆页面</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+   </head>
+   <body>
+  	<div class="container">
+  		<form action="" class="form-horizontal">
+  			<div class="form-group">
+  				<div class="col-xs-1">
+  					<label for="uid" class="control-label">用户名：</label>
+  				</div>					
+  				<div class="col-xs-3">
+  					<input type="text" id="uid" class="form-control" placeholder="请输入用户名">
+  				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-1">
+					<label for="upwd" class="control-label">密码：</label>
+				</div>					
+				<div class="col-xs-3">
+					<input type="text" id="upwd" class="form-control" placeholder="请输入用户名">
+				</div>
+			</div>
+			<div id="warning">
+				<span>账号或密码错误，请重新输入</span>
+			</div>	
+			<div class="control-group">
+				<input type="button" class="btn btn-info" value="注册" onclick="javascript:register()" />
+				<input type="button" class="btn btn-success" value="登录" onclick="javascript:signIn()"/>
+			</div>
+		</form>	
+	</div>
+	<script src="../../js/jquery-1.11.3.js"></script>
+	<script src="../../js/Landing_zhou.js"></script>	
+ </body>
+</html>

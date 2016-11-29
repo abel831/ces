@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/style.css"/>
+  <title>注册成功后的跳转</title>
+ </head>
+ <body>
+	<div id='a'>
+		<div id="b">
+			<span>注册成功</span>
+			<span id='jumpTo'></span>
+			<span>秒后跳转登录页面</span>
+			<br />
+			<a href="Landing_zhou2.html">如无反应请点击此处跳转</a>
+		</div>
+	</div>
+	<script type="text/javascript" src='../../js/jquery-1.11.3.js'></script>
+	<script type="text/javascript" src='../../js/js.js'></script>
+ </body>
+</html>

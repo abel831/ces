@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"> 
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="../../css/registered_zhou.css">
+  <style type="text/css">
+	.font{
+		font-size:13px;
+	}
+  </style>
+  <title>注册页面</title>
+ </head>
+ <body>
+	<div id="log" class="container">
+		<form action="" id="check" class="form-horizontal">
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="uname" class="control-label">用户名：</label>
+				</div>
+                <div class="col-xs-3">
+                    <input type="text" id="uname" class="form-control" minlength="6" maxlength="12" placeholder="请输入6到12位用户名" required autofocus/>
+                 </div>
+			</div>
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="uPhone" class="control-label">手机号：</label>
+				</div>
+                <div class="col-xs-3">
+                    <input type="text" id="uPhone" pattern="1[3578]\d{9}" class="form-control" placeholder="请输入您的手机号" required/>
+                 </div>
+			</div>
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="upwd" class="control-label">密码：</label>
+				</div>
+                <div class="col-xs-3">
+                    <input type="password" id="upwd" class="form-control" placeholder="请输入您的密码" pattern="[a-zA-Z0-9]{6,16}" required/>
+                 </div>
+			</div>
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="confirm" class="control-label font">确认密码：</label>
+				</div>
+                <div class="col-xs-3">
+                    <input type="password" id="confirm" class="form-control" placeholder="请确认您的密码" />
+                 </div>
+			</div>
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="uEmail" class="control-label">邮箱：</label>
+				</div>
+                <div class="col-xs-3">
+                    <input type="email" id="uEmail" class="form-control" placeholder="请输入您的注册邮箱" />
+                 </div>
+			</div>
+			<div class="form-group">
+                <div class="col-xs-1">
+					<label for="Code" class="control-label">验证码：</label>
+				</div>
+                <div class="col-xs-1">
+                    <input type="text" id="Code" class="form-control"/>
+                 </div>
+				 <div id="code">
+					<img id="Verify" src="img/dakehu.jpg"/>
+					<a href="#">						
+						看不清，换一张
+					</a>
+				 </div>
+			</div>
+			<span id="err"></span>
+			<div class="control-group">
+				<input type="submit" value="注册" class="btn btn-info">
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="../../js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="../../js/registered_zhou.js"></script>
+ </body>
+</html>
