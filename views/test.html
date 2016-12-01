@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>注册页</title>
+ </head>
+ <body>
+  	<form id="formTest" action="">
+  		<div>
+  			<label for='uname'>用户名：</label>
+  			<input type="text" id='uname' name='uname'>
+  		</div>
+  		<div>
+  			<label for='phone'>手机号：</label>
+  			<input type="text" id='phone' name='phone'>
+  		</div>
+  		<div>
+  			<label for='password'>密码：</label>
+  			<input type="password" id='password' name='password'>
+  		</div>
+  		<div>
+  			<label for="tpassword">确认密码：</label>
+  			<input type="password" id='tpassword' name='tpassword'>
+  		</div>
+  		<div>
+  			<label for="email">邮箱：</label>
+  			<input type="text" id='email' name='email'>
+  		</div>
+  		<div>
+            <div>
+				<label for="Code" class="control-label">验证码：</label>
+				<input type="text" id="Code"/>
+            </div>
+			<div id="code">
+				<img id="Verify" src="img/dakehu.jpg"/>
+				<a href="#">						
+					看不清，换一张
+				</a>
+			</div>
+		</div>
+		<span id='err'></span>
+		<div>
+			<input type="submit" value='注册'>
+		</div>
+  	</form>
+  	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+  	<script type="text/javascript" src="js/js.js"></script>
+ </body>
+</html>
