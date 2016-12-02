@@ -1,6 +1,6 @@
 <?php
 try{
-	$name = isset($_GET['name']) ? $_GET['name'] : '';
+	$name = isset($_GET['uname']) ? $_GET['uname'] : '';
 	$password = isset($_GET['password']) ? $_GET['password'] : '';
 	$tpassword = isset ($_GET["tpassword"])?$_GET["tpassword"]:'';
 	$email = isset ($_GET["email"])?$_GET["email"]:'';
@@ -18,6 +18,12 @@ try{
 
 	$now = date('Y-m-d H:i:s', time());
 	require_once '../Class/DB.php';
+	$link=new DB();
+	$check = $link->select('user', ['name', 'email'], ['phone'=>$phone]);
+	if ($check) {
+		echo json_encode(array('code'=>2, 'msg'=>'该用户已注册,请直接登录.'));
+		exit;
+	}
 	$data = array(
 		'name' => $name,
 		'password' => $password,
@@ -26,10 +32,10 @@ try{
 		'create_at' => $now,
 		'update_at' => $now
 		);
-	$link=new DB();
 	$inter = $link->insert('user', $data);
 	if (!$inter) throw new Exception('提交失败.');
 	echo json_encode(array('code'=>0, 'msg'=>'注册成功'));
 }catch(Exception $e){
 	echo json_encode(array('code'=>1, 'msg'=>$e->getMessage()));
 }
+exit;

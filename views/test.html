@@ -3,15 +3,17 @@
  <head>
   <meta charset="UTF-8">
   <title>注册页</title>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
  </head>
  <body>
   	<form id="formTest" action="">
   		<div>
-  			<label for='uname'>用户名：</label>
+  			<label for='uname'>姓名：</label>
   			<input type="text" id='uname' name='uname'>
   		</div>
   		<div>
-  			<label for='phone'>手机号：</label>
+  			<label for='phone'>手机号(用户名)：</label>
   			<input type="text" id='phone' name='phone'>
   		</div>
   		<div>
@@ -28,22 +30,19 @@
   		</div>
   		<div>
             <div>
-				<label for="Code" class="control-label">验证码：</label>
-				<input type="text" id="Code"/>
+				<label for="code" class="control-label">验证码：</label>
+				<input type="text" id="code" name='code'/>
             </div>
-			<div id="code">
-				<img id="Verify" src="img/dakehu.jpg"/>
-				<a href="#">						
-					看不清，换一张
-				</a>
+			
+				<div id="Verify"><p></p></div>
+      <div id="code">
+				<input type="button" value='重新获取' id="button" onclick="getCode()">
 			</div>
 		</div>
-		<div id='err'><p></p></div>
+		<div id='err'></div>
 		<div>
-			<input type="submit" value='注册' id="but" onclick="sub()">
+			<input type="button" value='注册' id="but" onclick="sub()">
 		</div>
   	</form>
-  	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-  	<script type="text/javascript" src="js/js.js"></script>
  </body>
 </html>

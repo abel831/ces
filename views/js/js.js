@@ -1,31 +1,72 @@
+var tcode = '';
+$(document).ready(function(){
+	tcode = Math.ceil(Math.random()*9000)+1000;//随机生成一个4位数
+	$('#Verify').text(tcode);
+});
+function getCode() {
+	$('#err').text("");
+	tcode = Math.ceil(Math.random()*9000)+1000;
+	$('#Verify').text(tcode);
+}
+
 function sub() {
-	uname = $('#uname').val();
-	unameName = $('#uname').attr('name');
-	phone = $('#phone').val();
-	phoneName = $('#phone').attr('name');
-	password = $('#password').val();
-	passwordName = $('#password').attr('name');
-	tpassword = $('#tpassword').val();
-	tpasswordName = $('#tpassword').attr('name');
-	email = $('#email').val();
-	emailName = $('#email').attr('name');
-	// code = $('#code').val();
-	// codeName = $('#code').attr('name');
+	var uname = $('#uname').val();
+	var unameName = $('#uname').attr('name');
+	var phone = $('#phone').val();
+	var phoneName = $('#phone').attr('name');
+	var password = $('#password').val();
+	var passwordName = $('#password').attr('name');
+	var tpassword = $('#tpassword').val();
+	var tpasswordName = $('#tpassword').attr('name');
+	var email = $('#email').val();
+	var emailName = $('#email').attr('name');
+	var code = $('#code').val();
+	var codeName = $('#code').attr('name');
 
-	checkval(unameName, uname)
-	checkval(phoneName, phone)
-	checkval(passwordName, password)
-	if (password !== tpassword) {
-		$('#err').text("两次密码不一致");
+	var obj = {};
+	obj[unameName] = uname;
+	obj[phoneName] = phone;
+	obj[passwordName] = password;
+	obj[tpasswordName] = tpassword;
+	obj[emailName] = email;
+	obj[codeName] = code;
+	var data = '';
+	for (key in obj)
+	{
+		if (key == 'tpassword') {
+			var check = checkval(key, obj['password'], obj[key]);
+		} else {
+			var check = checkval(key, obj[key]);
+		}
+		if (check === false) {
+			return;
+		}
+		data = data + key + '=' + obj[key] + '&';
 	}
-	checkval(emailName, email)
-	checkval(unameName, uname)
 
-	// ajax请求注册接口
+	$.ajax({
+		type:'GET',
+		url:'/app/register.php?' + data,
+		dataType: 'json',
+		success: function(ret) {
+			$.each(ret, function (i, v) {
+				if (ret['code'] == 0) {
+					$('#err').text("111111111");
+					window.location.href='/views/signin.html';
+				} else if (ret['code'] == 2) {
+					$('#err').text(ret['msg']);
+					window.location.href='/views/signin.html';
+				} else {
+					$('#err').text(ret['msg']);
+				}
+			});
+			
+		}
+	});
 }
 
 
-function checkval(id, val){
+function checkval(id, val, tp){
 	// 用这样的方法写
 	// swich $id
 	// case name
@@ -36,37 +77,69 @@ function checkval(id, val){
 	// ....(同上)
 	switch (id){
 		case "uname":
-			if (val.length<=20) {
-				return ture;
-			}else{
-				$('#err').text("用户名不能超过20个字");
-			};
-			break;
+			if (val == '') {
+				$('#err').text("姓名不可为空");
+				return false;
+			}
+			if (val.length>20) {
+				$('#err').text("姓名不能超过20个字");
+				return false;
+			}
+			return true;
 		case "phone":
-			if (val.length==11) {
-				return ture;
-			}else{
-				alert(8)
+			if (val == '') {
+				$('#err').text("手机号不可为空");
+				return false;
+			}
+			if (val.length!=11) {
 				$('#err').text("请输入正确的手机号");
-			};
-			break;
+				return false;
+			}
+			var reg = /^(((1[0-9]{2}))+\d{8})$/;
+			if(!val.match(reg)){
+				$('#err').text("请输入正确的手机号");
+				return false;
+			}
+			return true;
 		case "password":
-			if (val.length<=15) {
-				return ture;
-			}else{
-				$('#err').text("密码不能超过15位");
-			};
-			break;
+			if (val == '') {
+				$('#err').text("密码不可为空");
+				return false;
+			}
+			if (val.length>=15 || val.length<=5) {
+				$('#err').text("密码长度为5~15");
+				return false;
+			}
+			return true;
+		case "tpassword":
+			if (val !== tp) {
+				$('#err').text("两次输入的密码不一致");
+				return false;
+			}
+			return true;
 		case "email":
-			var val = ('email').val();
-			if (val &&  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(val)) {
-				return ture;
-			}else{
+			if (val == '') {
+				$('#err').text("邮箱地址不可为空");
+				return false;
+			}
+			var reg = /\w+[@]{1}\w+[.]\w+/;
+			if (!reg.test(val)) {
 				$('#err').text("请输入正确的邮箱地址");
-			};
-			break;
+				return false;
+			}
+			return true;
+		case "code":
+			if (val == '') {
+				$('#err').text("验证码不可为空");
+				return false;
+			}
+			if (val != tcode) {
+				$('#err').text("验证码错误");
+				return false;
+			}
+			return true;
 		default:
-			return flase;
+			return false;
 	}
 }
 // // checkval(name, 111);

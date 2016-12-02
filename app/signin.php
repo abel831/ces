@@ -25,3 +25,4 @@ try{
 }catch(Exception $e){
 	echo json_encode(array('code'=>1, 'msg'=>$e->getMessage()));
 }
+exit;
