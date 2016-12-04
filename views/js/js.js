@@ -46,7 +46,7 @@ function sub() {
 
 	$.ajax({
 		type:'GET',
-		url:'/app/register.php?' + data,
+		url:'../../app/register.php?' + data,
 		dataType: 'json',
 		success: function(ret) {
 			$.each(ret, function (i, v) {
@@ -142,51 +142,43 @@ function checkval(id, val, tp){
 			return false;
 	}
 }
-// // checkval(name, 111);
-// /*
-// function register(){
-// 	// 在这里获取到input的字段后调用checkval（name（相对应的input）， val（相对应的获取到的内容））
-// 	// 然后判断checkval返回的值，例如：if（checkval === true）{输入没问题} else {取checkval返回值来提示}
-// 				// var id = $(this).attr('id');
-// 				// var val = $(this).val();
-// 				// checkval(id,val);
-// 				// if (checkval === ture) {
-// 				// 	$('#err').html('');
-// 				// }else{
-// 				// 	$('#err').html();		
-// 				// };
-// 	var sub= $('#formTest').submit(function(){
-// 		$.ajax({
-// 			url:'data/register.php',
-// 			type:'GET',
-// 			dataType:'json',
-// 			data:sub.serializeArray(),
-// 			success:function(){
-// 				alert('')
-// 			}
-// 		});
-// 	});
-// }
-// */
-// /*
-// function signin(){
-// 	$('#signIn').ready(function(){
-// 		$('#sub').on('click',function({
-// 				$.ajax({
-// 					url:'data/signIn.php',
-// 					type:'GET',
-// 					data:{'username':'$("#username").val()','upwd':'$("#upwd").val()'},
-// 					success:function(txt){
-// 						if (txt===err) {//用户名密码错误
-// 							$('#pro').html('用户名和密码有问题');
-// 						}else{//登录成功
-// 							$('pro').html('欢迎回来'+uname);
-// 						};
-// 					}
-// 				});
-// 			});
-// 		);
-// 	});
-// }
-// */
 
+//登录页面的验证
+function checkname(){
+	var username = $('#username').val();
+	
+	if (username == '') {
+		$('#pro').html('请输入您的用户名');
+	}else{
+		$('#pro').html('');
+	}
+}
+function checkPassword(){
+	var upwd = $('#upwd').val();
+	if (upwd == '') {
+		$('#pro').html('请输入您的密码');
+	}else{
+		$('#pro').html('');
+	}
+}
+
+//登录
+$('#sub').click(function(){
+	var username = $("[name='username']").val();
+	var upwd = $("[name='upwd']").val();
+	$.ajax({
+		type:"GET",
+		url:"../../app/signin.php",
+		data:{'username':username, 'upwd':upwd},
+		success:function(ret){
+			$.each(ret, function (i, v){
+				if (ret['code'] == 0) {
+					$('#pro').html('登录成功');
+					window.location.href='/views/welcome.html'
+				}else{
+					$('#pro').html(ret['msg']);
+				};
+			});
+		}
+	});
+});
